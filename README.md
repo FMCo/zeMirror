@@ -1,2 +1,2 @@
 # zeMirror
-Maxine smart mirror
+Maxine smart mirror. A home DIY project.
