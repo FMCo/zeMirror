@@ -1,0 +1,109 @@
+<html>
+<head>
+	<title>zeMirror</title>
+
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="weather-icons.css">
+
+	<style type="text/css">
+	body,
+	html {
+	  background: #000;
+	  padding: 0px;
+	  margin: 0px;
+	  width: 100%;
+	  height: 100%;
+	  font-family: "HelveticaNeue-Light", sans-serif;
+	  letter-spacing: -2px;
+	  color: #fff;
+	  opacity: 0.9;
+	  font-size: 75px;
+	  -webkit-font-smoothing: antialiased;
+	  text-rendering: geometricprecision;
+	}
+	</style>
+
+</head>
+<body>
+
+	<div class="top right">
+		<div class="windsun small dimmed"></div>
+		<div class="temp" id="tempid"></div>
+		<div class="forecast small dimmed"></div>
+	</div>
+	<div class="top left">
+		<div class="date small dimmed" id="dateid"></div>
+		<div class="time" id="timeid"></div>
+		<div class="calendar xxsmall"></div>
+	</div>
+	<div class="center-ver center-hor">
+		<!-- <div class="dishwasher light">Vaatwasser is klaar!</div> --></div>
+	<div class="lower-third center-hor"><div class="compliment light"></div></div>
+	<div class="bottom center-hor"><div class="news medium"></div></div>
+
+</div>
+	<script src="config.js"></script>
+	<script src="moment-with-locales.js"></script>
+	<script src="jquery.js"></script>
+	<script src="jquery.feedToJSON.js"></script>
+	<script src="weather.js"></script>
+	
+	<script>
+		jQuery.fn.updateWithText = function(text, speed)
+		{
+			var dummy = $('<div/>').html(text);
+		
+			if ($(this).html() != dummy.html())
+			{
+				$(this).fadeOut(speed/2, function() {
+					$(this).html(text);
+					$(this).fadeIn(speed/2, function() {
+						//done
+					});
+				});
+			}
+		}
+		
+		jQuery.fn.outerHTML = function(s) {
+		    return s
+		        ? this.before(s).remove()
+		        : jQuery("<p>").append(this.eq(0).clone()).html();
+		};
+		
+		function roundVal(temp)
+		{
+			return Math.round(temp * 10) / 10;
+		}
+		
+		jQuery(document).ready(function($) {
+		
+			var eventList = [];
+		
+			var lastCompliment;
+			var compliment;
+		
+		    moment.locale(config.lang);
+		
+			weather.init();
+		
+		});
+	</script>
+
+	<script>
+		function startTime () {
+		    moment.locale(config.lang);
+
+			var today = new moment();
+			var d = today.format("dddd, DD MMMM Y");
+			var h = today.format("HH:mm:ss");
+			
+			document.getElementById('timeid').innerHTML = h;
+			document.getElementById('dateid').innerHTML = d;
+
+			setTimeout(startTime, 1000);
+		}
+		startTime ();
+	</script>
+	
+</body>
+</html>
