@@ -16,7 +16,7 @@
 	  font-family: "HelveticaNeue-Light", sans-serif;
 	  letter-spacing: -2px;
 	  color: #fff;
-	  opacity: 0.9;
+	  opacity: 1.0;
 	  font-size: 75px;
 	  -webkit-font-smoothing: antialiased;
 	  text-rendering: geometricprecision;
@@ -27,13 +27,13 @@
 <body>
 
 	<div class="top right">
-		<div class="windsun small dimmed"></div>
 		<div class="temp" id="tempid"></div>
+		<div class="windsun small dimmed"></div>
 		<div class="forecast small dimmed"></div>
 	</div>
 	<div class="top left">
-		<div class="date small dimmed" id="dateid"></div>
 		<div class="time" id="timeid"></div>
+		<div class="date small dimmed" id="dateid"></div>
 		<div class="calendar xxsmall"></div>
 	</div>
 	<div class="center-ver center-hor">
@@ -95,12 +95,12 @@
 
 			var today = new moment();
 			var d = today.format("dddd, DD MMMM Y");
-			var h = today.format("HH:mm:ss");
+			var h = today.format("HH:mm");
 			
 			document.getElementById('timeid').innerHTML = h;
 			document.getElementById('dateid').innerHTML = d;
 
-			setTimeout(startTime, 1000);
+			setTimeout(startTime, 60000);
 		}
 		startTime ();
 	</script>
